@@ -3,5 +3,7 @@
 # also, you can do fun stuff like add version numbers and stuff
 # but I don't think we'll need that.
 
+# You will also need to install mosquitto
+
 paho-mqtt
 python-twitter
