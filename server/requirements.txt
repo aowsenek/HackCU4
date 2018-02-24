@@ -1,0 +1,7 @@
+# install everything here with:
+#     pip3 install -r requirements.txt
+# also, you can do fun stuff like add version numbers and stuff
+# but I don't think we'll need that.
+
+paho-mqtt
+python-twitter
