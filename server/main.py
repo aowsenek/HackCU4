@@ -69,15 +69,15 @@ def on_message(client, user_data, msg):
         print(f"Failed to decode {payload} as JSON.")
         return
     
-    lat = data.get("lat", None)
-    lon = data.get("lon", None)
+    lat = data.get("latitude", None)
+    lon = data.get("longitude", None)
     time = data.get("time", None)
     
-    if location:
+    if lat and lon and time:
         try:
             status = api.PostUpdate(
-                "I ran over a pothole here at {time}!"
-                "\nhttps://www.google.com/maps?q={lat},{lon}",
+                f"I ran over a pothole here at {time}!"
+                f"\nhttps://www.google.com/maps?q={lat},{lon}",
                 latitude=lat,
                 longitude=lon
             )
@@ -87,9 +87,9 @@ def on_message(client, user_data, msg):
         except Exception:
             print("An unidentified error occured while tweeting")
         
-        print(f"Tweet posted!")
+        print("Tweet posted!")
     else:
-        print("No location found in the message data.")
+        print(f"Tweet data is not in the correct format: {data}")
 
 if __name__ == "__main__":
     init_db()
