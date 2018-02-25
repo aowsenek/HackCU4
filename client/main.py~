@@ -10,6 +10,8 @@ echo_pin = mraa.Gpio(12)
 trig_pin.dir(mraa.DIR_OUT)
 echo_pin.dir(mraa.DIR_IN)
 
+last_post = 0
+
 def read_dist():
     time.sleep(0.3)
     trig_pin.write(1)
@@ -28,7 +30,7 @@ def read_dist():
 
 def detect_pothole(callback):
     prev = read_dist()
-    threshold = 20
+    threshold = 5
 
     while True:
         dist = read_dist()
@@ -41,17 +43,20 @@ def callback(client):
         t = datetime.datetime(1996, 1, 2).now().isoformat()
         lat = 40.009700
         lon = -105.241974
-        
-        client.publish("pothole", """{
-                "latitude": %f,
-                "longitude": %f,
-                "time": "%s"
-            }""" % (lat, lon, time))
+        ct = int(time.time())
+
+        if(ct-last_post > 15):
+            client.publish("pothole", """{
+                    "latitude": %f,
+                    "longitude": %f,
+                    "time": "%s"
+                }""" % (lat, lon, t))
+            last_post = ct
     return f
 
 if __name__ == "__main__":
     client = mqtt.Client()
-    client.connect("192.168.43.140", 1883, 60)
+    client.connect("192.168.43.170", 1883, 60)
 
     detect_pothole(callback(client))
 
