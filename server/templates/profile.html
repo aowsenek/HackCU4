@@ -1,0 +1,101 @@
+<!DOCTYPE HTML>
+<!--
+	Photon by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Photon by HTML5 UP</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="stylesheet" href="../static/photon/css/main.css" />
+	</head>
+	<body>
+
+		<!-- Header -->
+			<section id="header">
+				<div class="inner">
+					<span class="icon major fa-cloud"></span>
+					<h1>Hi, I'm <strong>{{username}}</strong></h1>
+					<p>Who I am:<br />
+						I identify as {{gender}}<br />
+					{{description}}</p>
+					<ul class="actions">
+						<li><a href="#one" class="button scrolly">Make a Project</a></li>
+					</ul>
+				</div>
+			</section>
+
+
+		<!-- One -->
+			<section id="one" class="main style2">
+				<div class="container">
+					<div class="row 150%">
+						<div class="6u 12u$(medium)">
+							<ul class="major-icons">
+								<li><span class="icon style1 major fa-code"></span></li>
+								<li><span class="icon style2 major fa-bolt"></span></li>
+								<li><span class="icon style4 major fa-cog"></span></li>
+								<li><span class="icon style5 major fa-desktop"></span></li>
+							</ul>
+						</div>
+<!--						<div class="6u$ 12u$(medium)">
+							<header class="major">
+								<h2>{{project}}</h2>
+							</header>
+                       <p>{{projectdescription}}</p>
+						</div>-->
+					</div>
+				</div>
+			</section>
+
+		<!-- Five -->
+			<section id="two" class="main style1">
+				<div class="container">
+					<section>
+						<h4>Make a Project</h4>
+						<form method="post" action="createproject" enctype=multipart/form-data>
+							<div class="row uniform 50%">
+								<div class="6u 12u$(xsmall)">
+									<input type="text" name="name" id="name" value="" placeholder="Project Name" >
+								</div>
+								<div class="6u$ 12u$(xsmall)">
+									<input type="text" name="location" id="location" value="" placeholder="Location" />
+								</div>
+								<div class="12u$">
+									<div class="select-wrapper">
+										<select name="category" id="category">
+											<option value="">- Category -</option>
+											<option value="Software">Software</option>
+											<option value="Hardware">Hardware</option>
+											<option value="Web Development">Web Development</option>
+											<option value="Mobile Development">Mobile Development</option>
+										</select>
+									</div>
+								</div>
+								<div class="12u$">
+									<textarea name="description" id="description" placeholder="Describe Your Project" rows="6"></textarea>
+								</div>
+                        <div class="12u$">
+                          <p>Upload a project photo:</p> <input type="file" name="image" accept="image/*">
+                        </div>
+								<div class="12u$">
+									<ul class="actions">
+										<li><input type="submit" value="Submit" class="special" /></li>
+									</ul>
+								</div>
+							</div>
+						</form>
+					</section>
+
+		<!-- Scripts -->
+			<script src="../static/photon/js/jquery.min.js"></script>
+			<script src="../static/photon/js/jquery.scrolly.min.js"></script>
+			<script src="../static/photon/js/skel.min.js"></script>
+			<script src="../static/photon/js/util.js"></script>
+			<!--[if lte IE 8]><script src="../static/photon/js/ie/respond.min.js"></script><![endif]-->
+			<script src="../static/photon/js/main.js"></script>
+
+	</body>
+</html>

@@ -1,0 +1,41 @@
+login
+<form method="post" action="/login">
+  <div class="field half first">
+    <label for="username">Username</label>
+    <input type="text" name="username" id="username" />
+  </div>
+  <div class="field half">
+    <label for="password">Password</label>
+    <input type="text" name="password" id="password" />
+  </div>
+  <ul class="actions">
+    <button onclick="submit()">submit</button>
+  </ul>
+</form>
+
+Signup
+<form method="post" action="/signupform">
+  <div class="field half first">
+    <label for="username">Username</label>
+    <input type="text" name="username" id="username" />
+  </div>
+  <div class="field half">
+    <label for="password">Password</label>
+    <input type="text" name="password" id="password" />
+  </div>
+  <div class="field half">
+    <label for="location">Location</label>
+    <input type="text" name="location" id="location" />
+  </div>
+  <ul class="actions">
+    <button onclick="submit()">submit</button>
+  </ul>
+</form>
+
+Image
+<form method="post" enctype=multipart/form-data>
+  <div class="file-upload">
+    <input type=file name=image>
+    <input type=submit value=Upload>
+  </div>
+</form>
