@@ -2,7 +2,7 @@
 
 import paho.mqtt.client as mqtt
 
-import mraa, time
+import mraa, time, datetime
 
 trig_pin = mraa.Gpio(13)
 echo_pin = mraa.Gpio(12)
@@ -46,12 +46,13 @@ def callback(client):
                 "latitude": %f,
                 "longitude": %f,
                 "time": "%s"
-            }""" % (lat, lon, time))
+            }""" % (lat, lon, t))
+    return f
 
 if __name__ == "__main__":
     client = mqtt.Client()
     client.connect("192.168.43.140", 1883, 60)
 
-    detect_pothole()
+    detect_pothole(callback(client))
 
     client.disconnect()
