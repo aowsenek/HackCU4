@@ -4,3 +4,4 @@ server/keys.py
 *.swo
 \#*\#
 __pycache__
+*.pyc
