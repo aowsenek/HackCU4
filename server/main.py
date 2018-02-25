@@ -51,7 +51,7 @@ def close_db():
     db.close()
 
 def on_connect(client, user_data, flags, rc):
-    print(client, user_data, flags, rc)
+    print("Connected to the broker successfully.")
 
 def on_message(client, user_data, msg):
     topic = msg.topic
@@ -69,18 +69,27 @@ def on_message(client, user_data, msg):
         print(f"Failed to decode {payload} as JSON.")
         return
     
-    location = data.get("tweet", "")
+    lat = data.get("latitude", None)
+    lon = data.get("longitude", None)
+    time = data.get("time", None)
     
-    if location:
+    if lat and lon and time:
         try:
-            status = api.PostUpdate(location)
+            status = api.PostUpdate(
+                f"I ran over a pothole here at {time}!"
+                f"\nhttps://www.google.com/maps?q={lat},{lon}",
+                latitude=lat,
+                longitude=lon
+            )
         except UnicodeDecodeError:
             print("Tweet location included invalid characters.")
             return
+        except Exception:
+            print("An unidentified error occured while tweeting")
         
-        print(f"Tweet posted with {status}.")
+        print("Tweet posted!")
     else:
-        print("No location found in the message data.")
+        print(f"Tweet data is not in the correct format: {data}")
 
 if __name__ == "__main__":
     init_db()
