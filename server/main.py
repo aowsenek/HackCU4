@@ -33,7 +33,7 @@ def add_pothole(lat, lon):
     if db is None:
         print("Database is none!")
         return
-    THRESHOLD = 0.5;
+    THRESHOLD = 0.00001
     c = db.cursor()
     # I can't find SQLite's power function -Alex
     c.execute("SELECT * FROM holes WHERE ((lat-?)+(lon-?))*((lat-?)+(lon-?)) < ?*?", (lat, lon, lat, lon, THRESHOLD, THRESHOLD))

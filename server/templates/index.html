@@ -50,7 +50,7 @@
         return {
           path: google.maps.SymbolPath.CIRCLE,
           fillColor: 'red',
-          fillOpacity: 0.2,
+          fillOpacity: 0.4 * Math.log(magnitude + 1),
           scale: 10,
           strokeColor: 'white',
           strokeWeight: .5
