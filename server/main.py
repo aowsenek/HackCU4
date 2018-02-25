@@ -88,6 +88,9 @@ def on_message(client, user_data, msg):
             print("An unidentified error occured while tweeting")
         
         print("Tweet posted!")
+
+        add_pothole(lat, lon)
+        print("Pothole added to database.")
     else:
         print(f"Tweet data is not in the correct format: {data}")
 
