@@ -3,3 +3,4 @@ server/keys.py
 *.swp
 *.swo
 \#*\#
+__pycache__

@@ -32,18 +32,26 @@ def detect_pothole(callback):
 
     while True:
         dist = read_dist()
-        if abs(dist - prev) > threshold:
+        if dist - prev > threshold:
             callback()
         prev = dist
 
+def callback(client):
+    def f():
+        t = datetime.datetime(1996, 1, 2).now().isoformat()
+        lat = 40.009700
+        lon = -105.241974
+        
+        client.publish("pothole", """{
+                "latitude": %f,
+                "longitude": %f,
+                "time": "%s"
+            }""" % (lat, lon, time))
 
 if __name__ == "__main__":
     client = mqtt.Client()
     client.connect("192.168.43.140", 1883, 60)
 
-    detect_pothole(lambda:
-        client.publish("pothole", "{\"tweet\": \"I just ran over a pothole!\"}")
-    )
+    detect_pothole()
 
     client.disconnect()
-
