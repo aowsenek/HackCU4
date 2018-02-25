@@ -31,11 +31,14 @@ def read_dist():
 def detect_pothole(callback):
     prev = read_dist()
     threshold = 5
+    prevtime = 0
 
     while True:
         dist = read_dist()
-        if dist - prev > threshold:
+        now = time.time()
+        if dist - prev > threshold and now - prevtime > 5:
             callback()
+            prevtime = now
         prev = dist
 
 def callback(client):
@@ -43,15 +46,13 @@ def callback(client):
         t = datetime.datetime(1996, 1, 2).now().isoformat()
         lat = 40.009700
         lon = -105.241974
-        ct = int(time.time())
 
-        if(ct-last_post > 5):
-            client.publish("pothole", """{
-                    "latitude": %f,
-                    "longitude": %f,
-                    "time": "%s"
-                }""" % (lat, lon, t))
-            last_post = ct
+        client.publish("pothole", """{
+                "latitude": %f,
+                "longitude": %f,
+                "time": "%s"
+            }""" % (lat, lon, t))
+
     return f
 
 if __name__ == "__main__":
