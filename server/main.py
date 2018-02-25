@@ -41,7 +41,7 @@ def on_message(client, user_data, msg):
         print(f"Failed to decode {payload} as JSON.")
         return
     
-    location = data.get("location", "")
+    location = data.get("tweet", "")
     
     if location:
         try:
@@ -63,6 +63,6 @@ if __name__ == "__main__":
     client.on_connect = on_connect
     client.on_message = on_message
 
-    client.subscribe("test", 0)
+    client.subscribe("pothole", 0)
 
     client.loop_forever()

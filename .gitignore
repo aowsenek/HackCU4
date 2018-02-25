@@ -1,1 +1,5 @@
 server/keys.py
+*~
+*.swp
+*.swo
+\#*\#
